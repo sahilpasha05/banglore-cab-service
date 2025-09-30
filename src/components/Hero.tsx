@@ -1,21 +1,49 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin } from "lucide-react";
-import heroImage from "@/assets/hero-travel.jpg";
+import vidhanaSoudhaImage from "@/assets/bangalore-vidhana-soudha.jpg";
+import palaceImage from "@/assets/bangalore-palace.jpg";
+import lalbaghImage from "@/assets/bangalore-lalbagh.jpg";
+import cubbonParkImage from "@/assets/bangalore-cubbon-park.jpg";
+import ubCityImage from "@/assets/bangalore-ub-city.jpg";
 
 const Hero = () => {
+  const images = [
+    vidhanaSoudhaImage,
+    palaceImage,
+    lalbaghImage,
+    cubbonParkImage,
+    ubCityImage,
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   const scrollToBooking = () => {
     document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Background Image with Gradient Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-hero" />
-      </div>
+      {/* Background Images with Gradient Overlay */}
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ backgroundImage: `url(${image})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-hero" />
+        </div>
+      ))}
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground">
