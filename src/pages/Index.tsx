@@ -19,6 +19,12 @@ import urbaniaImage from "@/assets/urbania-white.jpg";
 import bus21Image from "@/assets/21-seater-bus-white.jpg";
 import bus33Image from "@/assets/33-seater-bus-white.jpg";
 import bus50Image from "@/assets/50-seater-bus-white.jpg";
+import coorgImage from "@/assets/coorg-destination.jpg";
+import ootyImage from "@/assets/ooty-destination.jpg";
+import gokarnaImage from "@/assets/gokarna-destination.jpg";
+import mysoreImage from "@/assets/mysore-destination.jpg";
+import chikmagalurImage from "@/assets/chikmagalur-destination.jpg";
+import hampiImage from "@/assets/hampi-destination.jpg";
 import reviewAvatar1 from "@/assets/review-avatar-1.jpg";
 import reviewAvatar2 from "@/assets/review-avatar-2.jpg";
 import reviewAvatar3 from "@/assets/review-avatar-3.jpg";
@@ -108,6 +114,7 @@ const Index = () => {
       duration: "2 Days 1 Night",
       price: "₹6,999/-",
       rating: "4.9",
+      image: coorgImage,
     },
     {
       title: "Ooty Hill Station",
@@ -115,6 +122,7 @@ const Index = () => {
       duration: "3 Days 2 Nights",
       price: "₹8,999/-",
       rating: "4.8",
+      image: ootyImage,
     },
     {
       title: "Gokarna Beach",
@@ -122,6 +130,7 @@ const Index = () => {
       duration: "2 Days 1 Night",
       price: "₹5,999/-",
       rating: "4.7",
+      image: gokarnaImage,
     },
     {
       title: "Mysore Heritage",
@@ -129,6 +138,7 @@ const Index = () => {
       duration: "1 Day Trip",
       price: "₹2,999/-",
       rating: "4.8",
+      image: mysoreImage,
     },
     {
       title: "Chikmagalur Hills",
@@ -136,6 +146,7 @@ const Index = () => {
       duration: "2 Days 1 Night",
       price: "₹7,499/-",
       rating: "4.9",
+      image: chikmagalurImage,
     },
     {
       title: "Hampi Heritage",
@@ -143,6 +154,7 @@ const Index = () => {
       duration: "2 Days 1 Night",
       price: "₹6,499/-",
       rating: "4.8",
+      image: hampiImage,
     },
   ];
 
@@ -199,7 +211,7 @@ const Index = () => {
             className="w-full" 
             align="start" 
             basis="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-            interval={5000}
+            interval={2000}
           >
             {fleetData.map((vehicle, index) => (
               <FleetCard key={index} {...vehicle} />
@@ -221,8 +233,8 @@ const Index = () => {
           <AutoScrollCarousel 
             className="w-full" 
             align="start" 
-            basis="md:basis-1/2 lg:basis-1/3"
-            interval={5500}
+            basis="md:basis-1/3"
+            interval={2000}
           >
             {packages.map((pkg, index) => (
               <PackageCard key={index} {...pkg} />
@@ -243,7 +255,7 @@ const Index = () => {
             className="w-full" 
             align="start" 
             basis="md:basis-1/2 lg:basis-1/3"
-            interval={6000}
+            interval={2000}
           >
             {reviews.map((review, index) => (
               <ReviewCard key={index} {...review} />
