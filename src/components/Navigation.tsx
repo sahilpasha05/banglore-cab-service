@@ -39,9 +39,9 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <div className="text-2xl font-bold bg-gradient-accent bg-clip-text text-transparent">
-              SIDDESHWARA
+              BANGALORE CAB
             </div>
-            <div className="text-sm font-medium text-muted-foreground">TRAVELS</div>
+            <div className="text-sm font-medium text-muted-foreground">SERVICE</div>
           </Link>
 
           {/* Desktop Navigation */}

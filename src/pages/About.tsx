@@ -11,7 +11,7 @@ const About = () => {
       <section className="pt-32 pb-20 bg-gradient-to-b from-secondary/50 to-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">About Siddeshwara Travels</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">About Bangalore Cab Service</h1>
             <p className="text-xl text-muted-foreground">
               Your trusted partner in premium travel services since 2008
             </p>
@@ -26,7 +26,7 @@ const About = () => {
             <div className="prose prose-lg max-w-none">
               <h2 className="text-3xl font-bold mb-6">Our Story</h2>
               <p className="text-muted-foreground mb-4">
-                Siddeshwara Travels was founded with a simple mission: to provide reliable, comfortable, and 
+                Bangalore Cab Service was founded with a simple mission: to provide reliable, comfortable, and 
                 professional travel services to our customers. Over the years, we have grown from a small local 
                 operator to one of the most trusted travel service providers in Bangalore and Karnataka.
               </p>

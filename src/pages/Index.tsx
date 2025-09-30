@@ -169,7 +169,7 @@ const Index = () => {
       name: "Priya Sharma",
       image: reviewAvatar2,
       rating: 5,
-      review: "Amazing experience with Siddeshwara Travels. Punctual, safe, and comfortable journey to Coorg. Will book again!",
+      review: "Amazing experience with Bangalore Cab Service. Punctual, safe, and comfortable journey to Coorg. Will book again!",
     },
     {
       name: "Arun Prakash",
