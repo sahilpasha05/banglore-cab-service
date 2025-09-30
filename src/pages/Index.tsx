@@ -199,7 +199,7 @@ const Index = () => {
             className="w-full" 
             align="start" 
             basis="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-            interval={3000}
+            interval={5000}
           >
             {fleetData.map((vehicle, index) => (
               <FleetCard key={index} {...vehicle} />
@@ -222,7 +222,7 @@ const Index = () => {
             className="w-full" 
             align="start" 
             basis="md:basis-1/2 lg:basis-1/3"
-            interval={3500}
+            interval={5500}
           >
             {packages.map((pkg, index) => (
               <PackageCard key={index} {...pkg} />
@@ -243,7 +243,7 @@ const Index = () => {
             className="w-full" 
             align="start" 
             basis="md:basis-1/2 lg:basis-1/3"
-            interval={4000}
+            interval={6000}
           >
             {reviews.map((review, index) => (
               <ReviewCard key={index} {...review} />
