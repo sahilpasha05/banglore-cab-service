@@ -6,13 +6,7 @@ import PackageCard from "@/components/PackageCard";
 import ReviewCard from "@/components/ReviewCard";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Footer from "@/components/Footer";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { AutoScrollCarousel } from "@/components/AutoScrollCarousel";
 import hatchbackImage from "@/assets/hatchback-white.jpg";
 import sedanImage from "@/assets/sedan-white.jpg";
 import sedanPrimeImage from "@/assets/sedan-prime-white.jpg";
@@ -201,23 +195,16 @@ const Index = () => {
             </p>
           </div>
 
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
+          <AutoScrollCarousel 
+            className="w-full" 
+            align="start" 
+            basis="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+            interval={3000}
           >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {fleetData.map((vehicle, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                  <FleetCard {...vehicle} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
+            {fleetData.map((vehicle, index) => (
+              <FleetCard key={index} {...vehicle} />
+            ))}
+          </AutoScrollCarousel>
         </div>
       </section>
 
@@ -231,23 +218,16 @@ const Index = () => {
             </p>
           </div>
 
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
+          <AutoScrollCarousel 
+            className="w-full" 
+            align="start" 
+            basis="md:basis-1/2 lg:basis-1/3"
+            interval={3500}
           >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {packages.map((pkg, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <PackageCard {...pkg} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
+            {packages.map((pkg, index) => (
+              <PackageCard key={index} {...pkg} />
+            ))}
+          </AutoScrollCarousel>
         </div>
       </section>
 
@@ -259,23 +239,16 @@ const Index = () => {
             <p className="text-lg text-muted-foreground">What our customers say about us</p>
           </div>
 
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
+          <AutoScrollCarousel 
+            className="w-full" 
+            align="start" 
+            basis="md:basis-1/2 lg:basis-1/3"
+            interval={4000}
           >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {reviews.map((review, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <ReviewCard {...review} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
+            {reviews.map((review, index) => (
+              <ReviewCard key={index} {...review} />
+            ))}
+          </AutoScrollCarousel>
         </div>
       </section>
 
