@@ -61,7 +61,7 @@ const PackageCard = ({ title, destination, duration, price, rating = "4.8", imag
 
         <Button variant="accent" className="w-full" onClick={handleBooking}>
           <MessageCircle className="h-4 w-4" />
-          Book via WhatsApp
+          Book Now
         </Button>
       </CardContent>
     </Card>

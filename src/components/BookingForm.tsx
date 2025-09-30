@@ -112,6 +112,7 @@ const BookingForm = () => {
                     <SelectItem value="8">8 hours</SelectItem>
                     <SelectItem value="12">12 hours</SelectItem>
                     <SelectItem value="16">16 hours</SelectItem>
+                    <SelectItem value="custom">Custom (More Hours/Days)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -147,7 +148,7 @@ const BookingForm = () => {
 
             <Button variant="gold" size="lg" className="w-full md:w-auto px-12" onClick={handleSearch}>
               <Search className="h-5 w-5" />
-              Search & Book via WhatsApp
+              Book Now
             </Button>
 
             <p className="text-sm text-muted-foreground mt-4">

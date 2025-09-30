@@ -47,7 +47,7 @@ const FleetCard = ({ name, price, image, seats, fuel = "Fuel Included" }: FleetC
 
         <Button variant="accent" className="w-full" onClick={handleBooking}>
           <MessageCircle className="h-4 w-4" />
-          Book via WhatsApp
+          Book Now
         </Button>
       </CardContent>
     </Card>

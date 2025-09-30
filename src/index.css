@@ -100,4 +100,13 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
   }
+
+  @keyframes typing {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .animate-typing {
+    animation: typing 1.5s ease-in-out infinite;
+  }
 }

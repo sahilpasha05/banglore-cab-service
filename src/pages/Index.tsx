@@ -3,61 +3,107 @@ import Hero from "@/components/Hero";
 import BookingForm from "@/components/BookingForm";
 import FleetCard from "@/components/FleetCard";
 import PackageCard from "@/components/PackageCard";
+import ReviewCard from "@/components/ReviewCard";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Footer from "@/components/Footer";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import hatchbackImage from "@/assets/hatchback-white.jpg";
 import sedanImage from "@/assets/sedan-white.jpg";
-import suvImage from "@/assets/suv-white.jpg";
-import vanImage from "@/assets/van-white.jpg";
-import busImage from "@/assets/bus-white.jpg";
+import sedanPrimeImage from "@/assets/sedan-prime-white.jpg";
+import ertigaImage from "@/assets/ertiga-white.jpg";
+import innovaImage from "@/assets/innova-white.jpg";
+import crystaImage from "@/assets/crysta-white.jpg";
+import hycrossImage from "@/assets/hycross-white.jpg";
+import tempoTravellerImage from "@/assets/tempo-traveller-white.jpg";
+import urbaniaImage from "@/assets/urbania-white.jpg";
+import bus21Image from "@/assets/21-seater-bus-white.jpg";
+import bus33Image from "@/assets/33-seater-bus-white.jpg";
+import bus50Image from "@/assets/50-seater-bus-white.jpg";
+import reviewAvatar1 from "@/assets/review-avatar-1.jpg";
+import reviewAvatar2 from "@/assets/review-avatar-2.jpg";
+import reviewAvatar3 from "@/assets/review-avatar-3.jpg";
+import reviewAvatar4 from "@/assets/review-avatar-4.jpg";
+import reviewAvatar5 from "@/assets/review-avatar-5.jpg";
 
 const Index = () => {
   const fleetData = [
     {
-      name: "Toyota Etios",
-      price: "₹1300/-",
+      name: "Hatchback",
+      price: "₹1,200/-",
+      image: hatchbackImage,
+      seats: "04 Seats",
+    },
+    {
+      name: "Sedan",
+      price: "₹1,500/-",
       image: sedanImage,
       seats: "04 Seats",
     },
     {
-      name: "BMW 5 Series",
-      price: "₹5999/-",
-      image: sedanImage,
+      name: "Sedan Prime",
+      price: "₹2,000/-",
+      image: sedanPrimeImage,
       seats: "04 Seats",
     },
     {
-      name: "Honda City",
-      price: "₹1999/-",
-      image: sedanImage,
-      seats: "04 Seats",
+      name: "Ertiga",
+      price: "₹1,800/-",
+      image: ertigaImage,
+      seats: "06 Seats",
     },
     {
-      name: "AUDI A6",
-      price: "₹5999/-",
-      image: suvImage,
-      seats: "04 Seats",
+      name: "Innova",
+      price: "₹2,200/-",
+      image: innovaImage,
+      seats: "07 Seats",
     },
     {
-      name: "Innova Crysta",
-      price: "₹2499/-",
-      image: vanImage,
+      name: "Crysta",
+      price: "₹2,499/-",
+      image: crystaImage,
+      seats: "07 Seats",
+    },
+    {
+      name: "Hycross",
+      price: "₹2,800/-",
+      image: hycrossImage,
       seats: "07 Seats",
     },
     {
       name: "Tempo Traveller",
-      price: "₹3999/-",
-      image: vanImage,
+      price: "₹3,999/-",
+      image: tempoTravellerImage,
       seats: "17 Seats",
     },
     {
-      name: "Mini Bus",
-      price: "₹5999/-",
-      image: busImage,
-      seats: "32 Seats",
+      name: "Urbania",
+      price: "₹4,500/-",
+      image: urbaniaImage,
+      seats: "17 Seats",
     },
     {
-      name: "Luxury Coach",
-      price: "₹8999/-",
-      image: busImage,
-      seats: "52 Seats",
+      name: "21 Seater Bus",
+      price: "₹4,999/-",
+      image: bus21Image,
+      seats: "21 Seats",
+    },
+    {
+      name: "33 Seater Bus",
+      price: "₹6,999/-",
+      image: bus33Image,
+      seats: "33 Seats",
+    },
+    {
+      name: "50 Seater Bus",
+      price: "₹8,999/-",
+      image: bus50Image,
+      seats: "50 Seats",
     },
   ];
 
@@ -106,6 +152,39 @@ const Index = () => {
     },
   ];
 
+  const reviews = [
+    {
+      name: "Rajesh Kumar",
+      image: reviewAvatar1,
+      rating: 5,
+      review: "Excellent service! The driver was professional and the car was clean. Highly recommended for outstation trips.",
+    },
+    {
+      name: "Priya Sharma",
+      image: reviewAvatar2,
+      rating: 5,
+      review: "Amazing experience with Siddeshwara Travels. Punctual, safe, and comfortable journey to Coorg. Will book again!",
+    },
+    {
+      name: "Arun Prakash",
+      image: reviewAvatar3,
+      rating: 4,
+      review: "Great service and reasonable prices. The booking process was smooth and the staff was very helpful.",
+    },
+    {
+      name: "Sneha Reddy",
+      image: reviewAvatar4,
+      rating: 5,
+      review: "Best travel experience! The Innova Crysta was in perfect condition and the driver knew all the best routes.",
+    },
+    {
+      name: "Vikram Singh",
+      image: reviewAvatar5,
+      rating: 5,
+      review: "Professional service from start to finish. The team made our family trip to Ooty memorable and hassle-free.",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -122,13 +201,23 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {fleetData.map((vehicle, index) => (
-              <div key={index} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <FleetCard {...vehicle} />
-              </div>
-            ))}
-          </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {fleetData.map((vehicle, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                  <FleetCard {...vehicle} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
         </div>
       </section>
 
@@ -136,24 +225,62 @@ const Index = () => {
       <section id="packages" className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Holiday Packages</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Popular Holiday Packages</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Explore amazing destinations with our curated travel packages
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {packages.map((pkg, index) => (
-              <div key={index} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <PackageCard {...pkg} />
-              </div>
-            ))}
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {packages.map((pkg, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <PackageCard {...pkg} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Customer Reviews</h2>
+            <p className="text-lg text-muted-foreground">What our customers say about us</p>
           </div>
+
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {reviews.map((review, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <ReviewCard {...review} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20">
+      <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Why Choose Us?</h2>
@@ -188,6 +315,7 @@ const Index = () => {
       </section>
 
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 };
