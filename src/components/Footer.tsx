@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <h3 className="text-2xl font-bold mb-4 bg-gradient-accent bg-clip-text text-transparent">
-              BANGALORE CAB SERVICE
+              BANGALORE CABS SERVICE
             </h3>
             <p className="text-primary-foreground/80 mb-4">
               Your trusted travel partner for comfortable and reliable journeys across Karnataka.
@@ -86,7 +86,7 @@ const Footer = () => {
 
         <div className="border-t border-primary-foreground/20 pt-8">
           <p className="text-center text-primary-foreground/60 text-sm">
-            © {new Date().getFullYear()} Bangalore Cab Service. All rights reserved.
+            © {new Date().getFullYear()} Bangalore Cabs Service. All rights reserved.
           </p>
         </div>
       </div>
