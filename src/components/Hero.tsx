@@ -30,6 +30,10 @@ const Hero = () => {
     document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const callUs = () => {
+    window.location.href = "tel:9900987878"; // Opens dialer
+  };
+
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background Images with Gradient Overlay */}
@@ -56,20 +60,23 @@ const Hero = () => {
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
             Experience Premium
             <br />
-            <span className="bg-gradient-accent bg-clip-text text-transparent">Travel Services</span>
+            <span className="bg-gradient-accent bg-clip-text text-transparent">
+              Travel Services
+            </span>
           </h1>
 
           <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-2xl mx-auto">
             Book cars, vans, and buses for your perfect journey. Comfortable, reliable, and professional service across Bangalore and beyond.
           </p>
 
+          {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button variant="accent" size="xl" onClick={scrollToBooking}>
               Book Now
               <ArrowRight className="h-5 w-5" />
             </Button>
-            <Button variant="hero" size="xl" onClick={() => document.getElementById("fleet")?.scrollIntoView({ behavior: "smooth" })}>
-              View Our Fleet
+            <Button variant="accent" size="xl" onClick={callUs}>
+              Call Us
             </Button>
           </div>
 

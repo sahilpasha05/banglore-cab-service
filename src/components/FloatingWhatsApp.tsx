@@ -1,38 +1,59 @@
 import { useState, useEffect } from "react";
-import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const FloatingWhatsApp = () => {
-  const [showText, setShowText] = useState(false);
+  const [displayedText, setDisplayedText] = useState("");
+  const fullText = "Need assistance?";
+  const typingSpeed = 150; // milliseconds per character
+  const pauseTime = 2000; // 2 seconds pause
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowText(true);
-    }, 1000);
-    return () => clearTimeout(timer);
+    let index = 0;
+    let typing = true;
+
+    const typeInterval = setInterval(() => {
+      if (typing) {
+        setDisplayedText(fullText.slice(0, index + 1));
+        index++;
+        if (index === fullText.length) {
+          typing = false;
+          setTimeout(() => {
+            index = 0;
+            setDisplayedText("");
+            typing = true;
+          }, pauseTime);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearInterval(typeInterval);
   }, []);
 
   const handleClick = () => {
-    const message = "I need more information about this.";
-    const whatsappUrl = `https://wa.me/918147260587?text=${encodeURIComponent(message)}`;
+    const phoneNumber = "919900987878"; // WhatsApp expects country code, so add 91
+    const message = "Hi, I need assistance regarding Booking in Banglore cab services";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
-      {showText && (
-        <div className="bg-background border border-border rounded-lg px-4 py-2 shadow-lg animate-fade-in">
-          <p className="text-sm font-medium whitespace-nowrap animate-typing">
-            Need assistance?
-          </p>
-        </div>
-      )}
+      {/* Chat Bubble */}
+      <div className="bg-background border border-border rounded-lg px-4 py-2 shadow-lg">
+        <p className="text-sm font-medium whitespace-nowrap">{displayedText}</p>
+      </div>
+
+      {/* WhatsApp Button */}
       <Button
         onClick={handleClick}
         size="lg"
-        className="h-14 w-14 rounded-full bg-[#25D366] hover:bg-[#20BA5A] shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        className="h-14 w-14 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 p-2"
       >
-        <MessageCircle className="h-6 w-6 text-white" />
+        <img
+          src="https://cdn-icons-png.flaticon.com/128/5968/5968841.png"
+          alt="WhatsApp"
+          className="h-10 w-10"
+        />
       </Button>
     </div>
   );

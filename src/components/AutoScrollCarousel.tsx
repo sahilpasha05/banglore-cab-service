@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+// AutoScrollCarousel.tsx
+import { useEffect, useRef, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -7,6 +8,7 @@ import {
   CarouselPrevious,
   CarouselApi,
 } from "@/components/ui/carousel";
+import * as React from "react";
 
 interface AutoScrollCarouselProps {
   children: React.ReactNode;
@@ -23,22 +25,29 @@ export const AutoScrollCarousel = ({
   basis = "md:basis-1/2 lg:basis-1/3",
   interval = 2000,
 }: AutoScrollCarouselProps) => {
-  const [api, setApi] = React.useState<CarouselApi>();
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
   const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
   const isInteractingRef = useRef(false);
 
   useEffect(() => {
     if (!api) return;
 
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+
     const startAutoScroll = () => {
-      if (autoScrollRef.current) {
-        clearInterval(autoScrollRef.current);
-      }
+      if (autoScrollRef.current) clearInterval(autoScrollRef.current);
 
       autoScrollRef.current = setInterval(() => {
         if (!isInteractingRef.current && api.canScrollNext()) {
           api.scrollNext();
-        } else if (!isInteractingRef.current && !api.canScrollNext()) {
+        } else if (!isInteractingRef.current) {
           api.scrollTo(0);
         }
       }, interval);
@@ -59,9 +68,7 @@ export const AutoScrollCarousel = ({
     const handlePointerUp = () => {
       isInteractingRef.current = false;
       setTimeout(() => {
-        if (!isInteractingRef.current) {
-          startAutoScroll();
-        }
+        if (!isInteractingRef.current) startAutoScroll();
       }, 2000);
     };
 
@@ -73,9 +80,7 @@ export const AutoScrollCarousel = ({
     const handleMouseLeave = () => {
       isInteractingRef.current = false;
       setTimeout(() => {
-        if (!isInteractingRef.current) {
-          startAutoScroll();
-        }
+        if (!isInteractingRef.current) startAutoScroll();
       }, 1000);
     };
 
@@ -98,26 +103,38 @@ export const AutoScrollCarousel = ({
   }, [api, interval]);
 
   return (
-    <Carousel
-      setApi={setApi}
-      opts={{
-        align,
-        loop: true,
-      }}
-      className={className}
-    >
-      <CarouselContent className="-ml-2 md:-ml-4">
-        {React.Children.map(children, (child, index) => (
-          <CarouselItem key={index} className={`pl-2 md:pl-4 ${basis}`}>
-            {child}
-          </CarouselItem>
+    <div className="w-full">
+      <Carousel
+        setApi={setApi}
+        opts={{
+          align,
+          loop: true,
+        }}
+        className={className}
+      >
+        <CarouselContent className="-ml-2 md:-ml-4">
+          {React.Children.map(children, (child, index) => (
+            <CarouselItem key={index} className={`pl-2 md:pl-4 ${basis}`}>
+              {child}
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="hidden md:flex" />
+        <CarouselNext className="hidden md:flex" />
+      </Carousel>
+
+      {/* Dot indicators */}
+      <div className="flex justify-center mt-4 space-x-2">
+        {Array.from({ length: count }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => api?.scrollTo(index)}
+            className={`w-3 h-3 rounded-full transition-all ${
+              current === index ? "bg-accent scale-110" : "bg-gray-300"
+            }`}
+          />
         ))}
-      </CarouselContent>
-      <CarouselPrevious className="hidden md:flex" />
-      <CarouselNext className="hidden md:flex" />
-    </Carousel>
+      </div>
+    </div>
   );
 };
-
-// Add missing React import
-import * as React from "react";

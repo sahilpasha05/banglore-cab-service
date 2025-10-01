@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -15,17 +15,21 @@ const Footer = () => {
               Your trusted travel partner for comfortable and reliable journeys across Karnataka.
             </p>
             <div className="flex gap-4">
-              <a href="https://www.facebook.com/SiddeshwaraTravels" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+              <a
+                href="https://www.facebook.com/profile.php?id=61581385033094"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent transition-colors"
+              >
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="https://twitter.com/siddeshwarablr" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="https://www.instagram.com/siddeshwara_travels" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+              <a
+                href="https://www.instagram.com/bangalurucabs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent transition-colors"
+              >
                 <Instagram className="h-5 w-5" />
-              </a>
-              <a href="https://youtu.be/YmrSAcYznyw" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
-                <Youtube className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -61,13 +65,13 @@ const Footer = () => {
               <li className="flex items-start gap-2">
                 <Phone className="h-5 w-5 mt-0.5 text-accent" />
                 <a href="tel:+918147260587" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  +91 8147260587
+                  +91 9900987878
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="h-5 w-5 mt-0.5 text-accent" />
-                <a href="mailto:info@siddeshwara.in" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  info@siddeshwara.in
+                <a href="mailto:bangalurucabs7@gmail.com" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  bangalurucabs7@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2">

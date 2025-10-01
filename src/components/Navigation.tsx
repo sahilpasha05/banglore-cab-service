@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Phone, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -7,6 +7,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,50 +19,91 @@ const Navigation = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Fleet", path: "/#fleet" },
-    { name: "Packages", path: "/#packages" },
+    { name: "Fleet", path: "fleet" },
+    { name: "Packages", path: "packages" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
 
-  const handleWhatsAppClick = () => {
-    window.open("https://wa.me/918147260587", "_blank");
+  const handleScrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const handleQuickContactClick = () => {
+    const phoneNumber = "9900987878";
+    window.location.href = `tel:${phoneNumber}`;
+  };
+
+  const handleLogoClick = () => {
+    if (location.pathname !== "/") {
+      navigate("/"); // navigate home first
+      setTimeout(() => {
+        const el = document.getElementById("home");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 200); // delay to ensure DOM updates
+    } else {
+      const el = document.getElementById("home");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"
+        isScrolled
+          ? "bg-background/95 backdrop-blur-md shadow-md"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
+          <button
+            onClick={handleLogoClick}
+            className="flex items-center gap-3 focus:outline-none"
+          >
             <div className="text-2xl font-bold bg-gradient-accent bg-clip-text text-transparent">
               BANGALORE CAB
             </div>
-            <div className="text-sm font-medium text-muted-foreground">SERVICE</div>
-          </Link>
+            <div className="text-sm font-medium text-muted-foreground">
+              SERVICE
+            </div>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-accent ${
-                  location.pathname === link.path ? "text-accent" : "text-foreground"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.path === "fleet" || link.path === "packages" ? (
+                <button
+                  key={link.path}
+                  onClick={() => handleScrollToSection(link.path)}
+                  className={`text-sm font-medium transition-colors hover:text-accent text-foreground`}
+                >
+                  {link.name}
+                </button>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-sm font-medium transition-colors hover:text-accent ${
+                    location.pathname === link.path
+                      ? "text-accent"
+                      : "text-foreground"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              )
+            )}
           </div>
 
-          {/* CTA Button */}
+          {/* Desktop Quick Contact Button */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="accent" size="lg" onClick={handleWhatsAppClick}>
+            <Button variant="accent" size="lg" onClick={handleQuickContactClick}>
               <Phone className="h-4 w-4" />
               Quick Contact
             </Button>
@@ -80,19 +122,35 @@ const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 animate-fade-in">
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`text-sm font-medium transition-colors hover:text-accent ${
-                    location.pathname === link.path ? "text-accent" : "text-foreground"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <Button variant="accent" onClick={handleWhatsAppClick} className="w-full">
+              {navLinks.map((link) =>
+                link.path === "fleet" || link.path === "packages" ? (
+                  <button
+                    key={link.path}
+                    onClick={() => handleScrollToSection(link.path)}
+                    className="text-sm font-medium transition-colors hover:text-accent text-foreground text-left"
+                  >
+                    {link.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`text-sm font-medium transition-colors hover:text-accent ${
+                      location.pathname === link.path
+                        ? "text-accent"
+                        : "text-foreground"
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              )}
+              <Button
+                variant="accent"
+                onClick={handleQuickContactClick}
+                className="w-full"
+              >
                 <Phone className="h-4 w-4" />
                 Quick Contact
               </Button>
