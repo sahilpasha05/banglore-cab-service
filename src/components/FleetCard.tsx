@@ -12,11 +12,18 @@ interface FleetCardProps {
 const FleetCard = ({ name, image, seats }: FleetCardProps) => {
   // Map of per km rates for specific vehicles
   const perKmRates: Record<string, string> = {
-    "52 Seater Bus": "₹62 per km",
+    "50 Seater Bus": "₹62 per km",
     "33 Seater Bus": "₹42 per km",
     "21 Seater Bus": "₹30 per km",
     "Urbania": "₹45 per km",
     "Tempo Traveller": "₹20 per km",
+    "Hatchback": "₹12 per km",
+    "Sedan": "₹13 per km",
+    "Sedan Prime": "₹14 per km",
+    "Ertiga": "₹16 per km",
+    "Innova": "₹17 per km",
+    "Crysta": "₹19 per km",
+    "Hycross": "₹22 per km",
   };
 
   const handleBooking = () => {

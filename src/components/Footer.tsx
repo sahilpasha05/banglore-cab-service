@@ -51,7 +51,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Our Services</h4>
             <ul className="space-y-2">
               <li className="text-primary-foreground/80">Car Booking</li>
-              <li className="text-primary-foreground/80">Van Booking</li>
+              <li className="text-primary-foreground/80">Traveller Booking</li>
               <li className="text-primary-foreground/80">Mini Bus Booking</li>
               <li className="text-primary-foreground/80">Bus Booking</li>
               <li className="text-primary-foreground/80">Holiday Packages</li>

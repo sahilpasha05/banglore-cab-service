@@ -31,12 +31,12 @@ const Hero = () => {
   };
 
   const callUs = () => {
-    window.location.href = "tel:9900987878"; // Opens dialer
+    window.location.href = "tel:+919900987878";
   };
 
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Background Images with Gradient Overlay */}
+      {/* Background Images */}
       {images.map((image, index) => (
         <div
           key={index}
@@ -45,16 +45,25 @@ const Hero = () => {
           }`}
           style={{ backgroundImage: `url(${image})` }}
         >
-          <div className="absolute inset-0 bg-gradient-hero" />
+          {/* Subtle dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/30" />
         </div>
       ))}
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground">
-        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-foreground/10 backdrop-blur-sm rounded-full border border-primary-foreground/20">
+        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up mt-16 md:mt-24">
+          
+          {/* Large Mobile Number */}
+          <div className="inline-flex items-center justify-center gap-2 text-4xl md:text-6xl font-extrabold text-gold drop-shadow-lg animate-pulse bg-black/20 px-6 py-2 rounded-full mx-auto">
+            <Phone className="h-8 w-8 md:h-10 md:w-10" />
+            9900987878
+          </div>
+
+          {/* Trusted Partner */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-foreground/10 backdrop-blur-sm rounded-full border border-primary-foreground/20 text-lg md:text-xl">
             <MapPin className="h-4 w-4" />
-            <span className="text-sm font-medium">Your Trusted Travel Partner</span>
+            <span className="font-medium">Your Trusted Travel Partner</span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
@@ -66,30 +75,18 @@ const Hero = () => {
           </h1>
 
           <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-2xl mx-auto">
-            Book cars, vans, and buses for your perfect journey. Comfortable, reliable, and professional service across Bangalore and beyond.
+            Premium Comfort, Effortless Booking. Travel in a Sedan, Traveller, or Toyota Luxury—Your Journey, Perfected.
           </p>
 
-          {/* Phone Number Display */}
-          <div className="flex flex-col items-center gap-4 pt-4">
-            <button
-              onClick={callUs}
-              className="flex items-center gap-4 px-8 py-4 bg-primary-foreground/10 backdrop-blur-md rounded-2xl border-2 border-primary-foreground/30 hover:border-primary-foreground/50 hover:bg-primary-foreground/20 transition-all duration-300 group"
-            >
-              <div className="w-14 h-14 bg-gradient-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-elegant">
-                <Phone className="h-7 w-7 text-accent-foreground" />
-              </div>
-              <div className="text-left">
-                <div className="text-sm font-medium text-primary-foreground/80">24/7 Booking Hotline</div>
-                <div className="text-3xl font-bold text-primary-foreground tracking-wide">+91 9900987878</div>
-              </div>
-            </button>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button variant="accent" size="xl" onClick={scrollToBooking}>
-                Book Now
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-            </div>
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            <Button variant="accent" size="xl" onClick={scrollToBooking}>
+              Book Now
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+            <Button variant="accent" size="xl" onClick={callUs}>
+              Call Us
+            </Button>
           </div>
 
           {/* Stats */}

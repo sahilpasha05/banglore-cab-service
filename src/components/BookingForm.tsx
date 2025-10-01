@@ -7,15 +7,15 @@ import { Calendar, Clock, MapPin, Users, Search } from "lucide-react";
 import { toast } from "sonner";
 
 const BookingForm = () => {
-  const [activeTab, setActiveTab] = useState<"outstation" | "local" | "airport">("local"); // Default Within City
+  const [activeTab, setActiveTab] = useState<"outstation" | "local" | "airport">("local"); 
   const [formData, setFormData] = useState({
     travelers: "1-4",
-    carFrom: "Bangalore",
-    hours: "4",
     pickupDate: "",
     pickupTime: "",
     pickupLocation: "",
     dropLocation: "",
+    days: "1",
+    hours: "2", // Added for Within City
   });
 
   const handleSearch = () => {
@@ -34,14 +34,15 @@ const BookingForm = () => {
     let message = `Hi! I'd like to book a ${tripType} trip:\nTraveler(s): ${formData.travelers} members\n`;
 
     if (activeTab === "outstation") {
-      message += `From: ${formData.carFrom}\nDuration: ${formData.hours} hours\n`;
+      message += `Pickup Location: ${formData.pickupLocation}\nDrop-off Location: ${formData.dropLocation}\nNumber of Days: ${formData.days}\n`;
+    } else if (activeTab === "local") {
+      message += `Pickup Location: ${formData.pickupLocation}\nDrop-off Location: ${formData.dropLocation}\nNumber of Hours: ${formData.hours}\n`;
     } else {
       message += `Pickup Location: ${formData.pickupLocation}\nDrop-off Location: ${formData.dropLocation}\n`;
     }
 
     message += `Pickup Date: ${formData.pickupDate}\nPickup Time: ${formData.pickupTime}`;
 
-    // ✅ Updated WhatsApp number here
     const whatsappUrl = `https://wa.me/919900987878?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
@@ -73,7 +74,7 @@ const BookingForm = () => {
                 onClick={() => setActiveTab("local")}
                 className="flex-1 col-span-1"
               >
-                WITHIN CITY
+                Local Package
               </Button>
 
               <Button
@@ -86,7 +87,7 @@ const BookingForm = () => {
               </Button>
             </div>
 
-            {/* Form */}
+            {/* Form Fields */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
               {/* Travelers */}
               <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
@@ -112,28 +113,8 @@ const BookingForm = () => {
                 </Select>
               </div>
 
-              {/* Conditional Fields */}
-              {activeTab === "outstation" ? (
-                <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
-                  <Label className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    Car From
-                  </Label>
-                  <Select
-                    value={formData.carFrom}
-                    onValueChange={(value) => setFormData({ ...formData, carFrom: value })}
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Bangalore">Bangalore</SelectItem>
-                      <SelectItem value="Mysore">Mysore</SelectItem>
-                      <SelectItem value="Mangalore">Mangalore</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              ) : (
+              {/* Outstation Fields */}
+              {activeTab === "outstation" && (
                 <>
                   <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
                     <Label className="flex items-center gap-2">
@@ -147,6 +128,7 @@ const BookingForm = () => {
                       onChange={(e) => setFormData({ ...formData, pickupLocation: e.target.value })}
                     />
                   </div>
+
                   <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
                     <Label className="flex items-center gap-2">
                       <MapPin className="h-4 w-4" />
@@ -159,32 +141,87 @@ const BookingForm = () => {
                       onChange={(e) => setFormData({ ...formData, dropLocation: e.target.value })}
                     />
                   </div>
+
+                  <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
+                    <Label className="flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      Number of Days
+                    </Label>
+                    <Select
+                      value={formData.days}
+                      onValueChange={(value) => setFormData({ ...formData, days: value })}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1">1 Day</SelectItem>
+                        <SelectItem value="2">2 Days</SelectItem>
+                        <SelectItem value="3">3 Days</SelectItem>
+                        <SelectItem value="4">4 Days</SelectItem>
+                        <SelectItem value="5">5 Days</SelectItem>
+                        <SelectItem value="6">6 Days</SelectItem>
+                        <SelectItem value="7">7 Days</SelectItem>
+                        <SelectItem value="custom">Custom (Need more days)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </>
               )}
 
-              {/* Hours (Outstation Only) */}
-              {activeTab === "outstation" && (
-                <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
-                  <Label className="flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
-                    No. of Hours
-                  </Label>
-                  <Select
-                    value={formData.hours}
-                    onValueChange={(value) => setFormData({ ...formData, hours: value })}
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="4">4 hours</SelectItem>
-                      <SelectItem value="8">8 hours</SelectItem>
-                      <SelectItem value="12">12 hours</SelectItem>
-                      <SelectItem value="16">16 hours</SelectItem>
-                      <SelectItem value="custom">Custom (More Hours/Days)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+              {/* Within City / Airport Fields */}
+              {activeTab !== "outstation" && (
+                <>
+                  <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
+                    <Label className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      Pickup Location
+                    </Label>
+                    <input
+                      type="text"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                      value={formData.pickupLocation}
+                      onChange={(e) => setFormData({ ...formData, pickupLocation: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
+                    <Label className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      Drop-off Location
+                    </Label>
+                    <input
+                      type="text"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                      value={formData.dropLocation}
+                      onChange={(e) => setFormData({ ...formData, dropLocation: e.target.value })}
+                    />
+                  </div>
+
+                  {/* Number of Hours for Within City */}
+                  {activeTab === "local" && (
+                    <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
+                      <Label className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        Number of Hours
+                      </Label>
+                      <Select
+                        value={formData.hours}
+                        onValueChange={(value) => setFormData({ ...formData, hours: value })}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="2">2 Hours</SelectItem>
+                          <SelectItem value="4">4 Hours</SelectItem>
+                          <SelectItem value="6">6 Hours</SelectItem>
+                          <SelectItem value="custom">Custom (Need more hours)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+                </>
               )}
 
               {/* Pickup Date */}
@@ -236,4 +273,4 @@ const BookingForm = () => {
   );
 };
 
-export default BookingForm;
+export default BookingForm;    
