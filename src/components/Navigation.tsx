@@ -67,7 +67,7 @@ const Navigation = () => {
             className="flex items-center gap-3 focus:outline-none"
           >
             <div className="text-2xl font-bold bg-gradient-accent bg-clip-text text-transparent">
-              BANGALORE CAB
+              BANGALORE CABS
             </div>
             <div className="text-sm font-medium text-muted-foreground">
               SERVICE
