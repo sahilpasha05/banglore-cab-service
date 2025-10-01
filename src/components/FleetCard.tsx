@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Fuel, MessageCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface FleetCardProps {
   name: string;
@@ -11,10 +12,10 @@ interface FleetCardProps {
 }
 
 const FleetCard = ({ name, price, image, seats, fuel = "Fuel Included" }: FleetCardProps) => {
+  const navigate = useNavigate();
+  
   const handleBooking = () => {
-    const message = `Hi! I'd like to book a ${name}.\n\nPrice: ${price}\nSeats: ${seats}`;
-    const whatsappUrl = `https://wa.me/918147260587?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+    window.open(`/fleet-booking?vehicle=${encodeURIComponent(name)}`, "_blank");
   };
 
   return (
