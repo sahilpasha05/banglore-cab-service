@@ -25,6 +25,7 @@ import gokarnaImage from "@/assets/gokarna-destination.jpg";
 import mysoreImage from "@/assets/mysore-destination.jpg";
 import chikmagalurImage from "@/assets/chikmagalur-destination.jpg";
 import hampiImage from "@/assets/hampi-destination.jpg";
+import goaImage from "@/assets/goa-destination.jpg";
 import reviewAvatar1 from "@/assets/review-avatar-1.jpg";
 import reviewAvatar2 from "@/assets/review-avatar-2.jpg";
 import reviewAvatar3 from "@/assets/review-avatar-3.jpg";
@@ -155,6 +156,14 @@ const Index = () => {
       price: "₹6,499/-",
       rating: "4.8",
       image: hampiImage,
+    },
+    {
+      title: "Goa Beaches",
+      destination: "Goa",
+      duration: "3 Days 2 Nights",
+      price: "₹9,999/-",
+      rating: "4.9",
+      image: goaImage,
     },
   ];
 
