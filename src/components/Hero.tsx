@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, Phone } from "lucide-react";
 import vidhanaSoudhaImage from "@/assets/bangalore-vidhana-soudha.jpg";
 import palaceImage from "@/assets/bangalore-palace.jpg";
 import lalbaghImage from "@/assets/bangalore-lalbagh.jpg";
@@ -69,15 +69,27 @@ const Hero = () => {
             Book cars, vans, and buses for your perfect journey. Comfortable, reliable, and professional service across Bangalore and beyond.
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button variant="accent" size="xl" onClick={scrollToBooking}>
-              Book Now
-              <ArrowRight className="h-5 w-5" />
-            </Button>
-            <Button variant="accent" size="xl" onClick={callUs}>
-              Call Us
-            </Button>
+          {/* Phone Number Display */}
+          <div className="flex flex-col items-center gap-4 pt-4">
+            <button
+              onClick={callUs}
+              className="flex items-center gap-4 px-8 py-4 bg-primary-foreground/10 backdrop-blur-md rounded-2xl border-2 border-primary-foreground/30 hover:border-primary-foreground/50 hover:bg-primary-foreground/20 transition-all duration-300 group"
+            >
+              <div className="w-14 h-14 bg-gradient-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-elegant">
+                <Phone className="h-7 w-7 text-accent-foreground" />
+              </div>
+              <div className="text-left">
+                <div className="text-sm font-medium text-primary-foreground/80">24/7 Booking Hotline</div>
+                <div className="text-3xl font-bold text-primary-foreground tracking-wide">+91 9900987878</div>
+              </div>
+            </button>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button variant="accent" size="xl" onClick={scrollToBooking}>
+                Book Now
+                <ArrowRight className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
 
           {/* Stats */}
