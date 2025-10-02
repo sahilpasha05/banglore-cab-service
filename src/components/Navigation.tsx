@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Phone, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,11 +30,6 @@ const Navigation = () => {
       el.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
-  };
-
-  const handleQuickContactClick = () => {
-    const phoneNumber = "9900987878";
-    window.location.href = `tel:${phoneNumber}`;
   };
 
   const handleLogoClick = () => {
@@ -101,22 +95,6 @@ const Navigation = () => {
             )}
           </div>
 
-          {/* Desktop Phone Number Display */}
-          <div className="hidden md:flex items-center gap-4">
-            <button
-              onClick={handleQuickContactClick}
-              className="flex items-center gap-3 px-6 py-3 bg-gradient-accent rounded-full hover:shadow-elegant transition-all duration-300 group"
-            >
-              <div className="w-10 h-10 bg-background/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Phone className="h-5 w-5 text-accent-foreground" />
-              </div>
-              <div className="text-left">
-                <div className="text-xs font-medium text-accent-foreground/80">Call Us Now</div>
-                <div className="text-lg font-bold text-accent-foreground tracking-wide">+91 9900987878</div>
-              </div>
-            </button>
-          </div>
-
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2"
@@ -154,16 +132,6 @@ const Navigation = () => {
                   </Link>
                 )
               )}
-              <button
-                onClick={handleQuickContactClick}
-                className="flex items-center justify-center gap-3 px-6 py-4 bg-gradient-accent rounded-lg hover:shadow-elegant transition-all duration-300 w-full"
-              >
-                <Phone className="h-5 w-5 text-accent-foreground" />
-                <div className="text-center">
-                  <div className="text-xs font-medium text-accent-foreground/80">Call Us</div>
-                  <div className="text-base font-bold text-accent-foreground">+91 9900987878</div>
-                </div>
-              </button>
             </div>
           </div>
         )}

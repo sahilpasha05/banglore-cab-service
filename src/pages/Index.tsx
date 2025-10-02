@@ -28,6 +28,14 @@ import gokarnaImage from "@/assets/gokarna-destination.jpg";
 import mysoreImage from "@/assets/mysore-destination.jpg";
 import chikmagalurImage from "@/assets/chikmagalur-destination.jpg";
 import hampiImage from "@/assets/hampi-destination.jpg";
+import MunnarImage from "@/assets/munnar-1.jpg";
+import shabariMalaImage from "@/assets/sabarimala.jpg";
+import tirangaDarshanImage from "@/assets/tiranga-darshanam.jpg";
+import kodaikanalImage from "@/assets/kodaikanal.jpg";
+import goaImage from "@/assets/goa.jpg";
+import ayodhyaImage from "@/assets/ayodhya.jpg";
+import pondyImage from "@/assets/pondy.jpg";
+
 
 import reviewAvatar1 from "@/assets/review-avatar-1.jpg";
 import reviewAvatar2 from "@/assets/review-avatar-2.jpg";
@@ -55,13 +63,113 @@ const Index = () => {
   ];
 
   const packages = [
-    { title: "Coorg Paradise", destination: "Coorg, Karnataka", duration: "2 Days 1 Night", price: "₹6,999/-", rating: "4.9", image: coorgImage },
-    { title: "Ooty Hill Station", destination: "Ooty, Tamil Nadu", duration: "3 Days 2 Nights", price: "₹8,999/-", rating: "4.8", image: ootyImage },
-    { title: "Gokarna Beach", destination: "Gokarna, Karnataka", duration: "2 Days 1 Night", price: "₹5,999/-", rating: "4.7", image: gokarnaImage },
-    { title: "Mysore Heritage", destination: "Mysore, Karnataka", duration: "1 Day Trip", price: "₹2,999/-", rating: "4.8", image: mysoreImage },
-    { title: "Chikmagalur Hills", destination: "Chikmagalur, Karnataka", duration: "2 Days 1 Night", price: "₹7,499/-", rating: "4.9", image: chikmagalurImage },
-    { title: "Hampi Heritage", destination: "Hampi, Karnataka", duration: "2 Days 1 Night", price: "₹6,499/-", rating: "4.8", image: hampiImage },
-  ];
+  { 
+    title: "Coorg Paradise", 
+    destination: "Coorg, Karnataka", 
+    duration: "2 Days 1 Night", 
+    price: "₹6,999/-", 
+    rating: "4.9", 
+    image: coorgImage 
+  },
+  { 
+    title: "Ooty Hill Station", 
+    destination: "Ooty, Tamil Nadu", 
+    duration: "3 Days 2 Nights", 
+    price: "₹8,999/-", 
+    rating: "4.8", 
+    image: ootyImage 
+  },
+  { 
+    title: "Gokarna Beach", 
+    destination: "Gokarna, Karnataka", 
+    duration: "2 Days 1 Night", 
+    price: "₹5,999/-", 
+    rating: "4.7", 
+    image: gokarnaImage 
+  },
+  { 
+    title: "Mysore Heritage", 
+    destination: "Mysore, Karnataka", 
+    duration: "1 Day Trip", 
+    price: "₹2,999/-", 
+    rating: "4.8", 
+    image: mysoreImage 
+  },
+   { 
+    title: "Shabari Mala", 
+    destination: "Shabari Mala, Kerala", 
+    duration: "2 Days 1 Night", 
+    price: "₹5,999/-", 
+    rating: "4.8", 
+    image: shabariMalaImage
+  },
+  { 
+    title: "Chikmagalur Hills", 
+    destination: "Chikmagalur, Karnataka", 
+    duration: "2 Days 1 Night", 
+    price: "₹7,499/-", 
+    rating: "4.9", 
+    image: chikmagalurImage 
+  },
+  { 
+    title: "Hampi Heritage", 
+    destination: "Hampi, Karnataka", 
+    duration: "2 Days 1 Night", 
+    price: "₹6,499/-", 
+    rating: "4.8", 
+    image: hampiImage 
+  },
+  { 
+    title: "Munnar Alappi", 
+    destination: "Munnar, Kerala", 
+    duration: "2 Days 1 Night", 
+    price: "₹7,999/-", 
+    rating: "4.9", 
+    image: MunnarImage
+  },
+  { 
+    title: "Tiranga Darshan", 
+    destination: "tiranga darshan", 
+    duration: "1 Day", 
+    price: "₹1,499/-", 
+    rating: "4.7", 
+    image: tirangaDarshanImage
+  },
+  { 
+    title: "Kodaikanal", 
+    destination: "Kodaikanal, Tamil Nadu", 
+    duration: "2 Days 1 Night", 
+    price: "₹6,999/-", 
+    rating: "4.8", 
+    image: kodaikanalImage
+  },
+   { 
+    title: "Goa Beach Trip", 
+    destination: "Goa", 
+    duration: "3 Days 2 Nights", 
+    price: "₹9,999/-", 
+    rating: "4.9", 
+    image: goaImage
+  },
+
+  { 
+    title: "Pondy Trip", 
+    destination: "Pondicherry", 
+    duration: "2 Days 1 Night", 
+    price: "₹5,999/-", 
+    rating: "4.7", 
+    image: pondyImage
+  },
+    { 
+    title: "Ayodhya Package", 
+    destination: "Ayodhya, Uttar Pradesh", 
+    duration: "2 Days 1 Night", 
+    price: "₹6,499/-", 
+    rating: "4.8", 
+    image: ayodhyaImage
+  },
+];
+
 
   const reviews = [
     { name: "Rajesh Kumar", image: reviewAvatar1, rating: 5, review: "Excellent service! The driver was professional and the car was clean. Highly recommended for outstation trips." },

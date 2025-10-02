@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import vidhanaSoudhaImage from "@/assets/bangalore-vidhana-soudha.jpg";
 import palaceImage from "@/assets/bangalore-palace.jpg";
 import lalbaghImage from "@/assets/bangalore-lalbagh.jpg";
@@ -45,28 +45,25 @@ const Hero = () => {
           }`}
           style={{ backgroundImage: `url(${image})` }}
         >
-          {/* Subtle dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
       ))}
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground">
-        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up mt-16 md:mt-24">
-          
-          {/* Large Mobile Number */}
-          <div className="inline-flex items-center justify-center gap-2 text-4xl md:text-6xl font-extrabold text-gold drop-shadow-lg animate-pulse bg-black/20 px-6 py-2 rounded-full mx-auto">
-            <Phone className="h-8 w-8 md:h-10 md:w-10" />
-            9900987878
+        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up mt-32 md:mt-40">
+
+          {/* Phone Number Display Above Heading */}
+          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-accent rounded-full mx-auto w-max -mt-6 sm:-mt-8">
+            <div className="w-10 h-10 bg-background/20 rounded-full flex items-center justify-center">
+              <Phone className="h-5 w-5 text-accent-foreground" />
+            </div>
+            <div className="text-lg font-bold text-accent-foreground tracking-wide">
+              +91 9900987878
+            </div>
           </div>
 
-          {/* Trusted Partner */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-foreground/10 backdrop-blur-sm rounded-full border border-primary-foreground/20 text-lg md:text-xl">
-            <MapPin className="h-4 w-4" />
-            <span className="font-medium">Your Trusted Travel Partner</span>
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white">
             Experience Premium
             <br />
             <span className="bg-gradient-accent bg-clip-text text-transparent">
@@ -74,17 +71,21 @@ const Hero = () => {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-2xl mx-auto">
-            Premium Comfort, Effortless Booking. Travel in a Sedan, Traveller, or Toyota Luxury—Your Journey, Perfected.
+          <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
+            Premium Comfort, Effortless Booking. Travel in a Sedan, Traveller, or
+            Toyota Luxury—Your Journey, Perfected.
           </p>
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button variant="accent" size="xl" onClick={scrollToBooking}>
               Book Now
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-5 w-5 ml-1" />
             </Button>
+
+            {/* Call Now Button Below Book Now */}
             <Button variant="accent" size="xl" onClick={callUs}>
+              <Phone className="h-5 w-5 mr-2" />
               Call Us
             </Button>
           </div>
@@ -97,8 +98,10 @@ const Hero = () => {
               { label: "Vehicles", value: "50+" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gold">{stat.value}</div>
-                <div className="text-sm text-primary-foreground/80">{stat.label}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gold">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-white/80">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -107,8 +110,8 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-        <div className="w-6 h-10 border-2 border-primary-foreground/50 rounded-full flex items-start justify-center p-2">
-          <div className="w-1.5 h-3 bg-primary-foreground/50 rounded-full animate-pulse" />
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+          <div className="w-1.5 h-3 bg-white/50 rounded-full animate-pulse" />
         </div>
       </div>
     </section>
