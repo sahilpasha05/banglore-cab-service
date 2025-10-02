@@ -34,11 +34,11 @@ const Navigation = () => {
 
   const handleLogoClick = () => {
     if (location.pathname !== "/") {
-      navigate("/"); // navigate home first
+      navigate("/");
       setTimeout(() => {
         const el = document.getElementById("home");
         if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 200); // delay to ensure DOM updates
+      }, 200);
     } else {
       const el = document.getElementById("home");
       if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -58,13 +58,15 @@ const Navigation = () => {
           {/* Logo */}
           <button
             onClick={handleLogoClick}
-            className="flex items-center gap-3 focus:outline-none"
+            className="flex items-center focus:outline-none"
           >
-            <div className="text-2xl font-bold bg-gradient-accent bg-clip-text text-transparent">
-              BANGALORE CABS
-            </div>
-            <div className="text-sm font-medium text-muted-foreground">
-              SERVICE
+            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
+              <div className="text-xl sm:text-2xl font-bold bg-gradient-accent bg-clip-text text-transparent whitespace-nowrap">
+                BANGALORE CABS
+              </div>
+              <div className="text-xs sm:text-sm font-medium text-muted-foreground">
+                SERVICE
+              </div>
             </div>
           </button>
 
@@ -106,14 +108,14 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 animate-fade-in">
-            <div className="flex flex-col gap-4">
+          <div className="md:hidden py-4 animate-fade-in bg-background/95 backdrop-blur-md rounded-b-lg">
+            <div className="flex flex-col gap-2">
               {navLinks.map((link) =>
                 link.path === "fleet" || link.path === "packages" ? (
                   <button
                     key={link.path}
                     onClick={() => handleScrollToSection(link.path)}
-                    className="text-sm font-medium transition-colors hover:text-accent text-foreground text-left"
+                    className="text-sm font-medium transition-colors hover:text-accent text-foreground text-left px-4 py-3 hover:bg-accent/10 rounded"
                   >
                     {link.name}
                   </button>
@@ -121,9 +123,9 @@ const Navigation = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`text-sm font-medium transition-colors hover:text-accent ${
+                    className={`text-sm font-medium transition-colors hover:text-accent px-4 py-3 hover:bg-accent/10 rounded ${
                       location.pathname === link.path
-                        ? "text-accent"
+                        ? "text-accent bg-accent/10"
                         : "text-foreground"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
