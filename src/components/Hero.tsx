@@ -51,19 +51,8 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground">
-        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up mt-32 md:mt-40">
-
-          {/* Phone Number Display Above Heading */}
-          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-accent rounded-full mx-auto w-max -mt-6 sm:-mt-8">
-            <div className="w-10 h-10 bg-background/20 rounded-full flex items-center justify-center">
-              <Phone className="h-5 w-5 text-accent-foreground" />
-            </div>
-            <div className="text-lg font-bold text-accent-foreground tracking-wide">
-              +91 9900987878
-            </div>
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white">
+        <div className="max-w-4xl mx-auto space-y-6 animate-fade-in-up mt-24 md:mt-32">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white">
             Experience Premium
             <br />
             <span className="bg-gradient-accent bg-clip-text text-transparent">
@@ -71,7 +60,17 @@ const Hero = () => {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
+          {/* Phone Number Display Below Heading */}
+          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-accent rounded-full mx-auto w-max">
+            <div className="w-10 h-10 bg-background/20 rounded-full flex items-center justify-center">
+              <Phone className="h-5 w-5 text-accent-foreground" />
+            </div>
+            <div className="text-xl font-bold text-accent-foreground tracking-wide">
+              +91 9900987878
+            </div>
+          </div>
+
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
             Premium Comfort, Effortless Booking. Travel in a Sedan, Traveller, or
             Toyota Luxury—Your Journey, Perfected.
           </p>
