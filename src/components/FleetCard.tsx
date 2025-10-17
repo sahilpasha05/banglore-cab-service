@@ -17,12 +17,12 @@ const FleetCard = ({ name, image, seats }: FleetCardProps) => {
     "21 Seater Bus": "₹30 per km",
     "Urbania": "₹45 per km",
     "Tempo Traveller": "₹20 per km",
-    "Hatchback": "₹12 per km",
-    "Sedan": "₹13 per km",
-    "Sedan Prime": "₹14 per km",
+    "Hatchback": "₹11 per km",
+    "Sedan": "₹12 per km",
+    "Sedan Prime": "₹13 per km",
     "Ertiga": "₹16 per km",
-    "Innova": "₹17 per km",
-    "Crysta": "₹19 per km",
+    "Innova": "₹16 per km",
+    "Crysta": "₹18 per km",
     "Hycross": "₹22 per km",
   };
 
