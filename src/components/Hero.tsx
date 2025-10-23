@@ -30,7 +30,6 @@ const Hero = () => {
             </div>
             <div className="text-xl font-bold text-accent-foreground tracking-wide">
               +91 9900987878
-              +91 9844822287
             </div>
           </div>
 
