@@ -14,7 +14,9 @@ const Hero = () => {
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-[#F4EAD5]">
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="max-w-4xl mx-auto space-y-6 animate-fade-in-up mt-24 md:mt-32">
+        {/* Responsive margin-top */}
+        <div className="max-w-4xl mx-auto space-y-6 animate-fade-in-up mt-16 md:mt-32">
+          {/* Responsive heading font size */}
           <h1 className="text-4xl md:text-6xl font-bold leading-tight text-slate-900">
             Experience Premium
             <br />
@@ -23,36 +25,42 @@ const Hero = () => {
             </span>
           </h1>
 
-          {/* Phone Number Display Below Heading */}
-          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-accent rounded-full mx-auto w-max">
-            <div className="w-10 h-10 bg-background/20 rounded-full flex items-center justify-center">
-              <Phone className="h-5 w-5 text-accent-foreground" />
+          {/* Responsive phone block */}
+          <div className="flex flex-col sm:flex-row items-center sm:gap-3 px-4 sm:px-6 py-3 bg-gradient-accent rounded-full mx-auto w-full sm:w-max">
+            
+            {/* Responsive text size */}
+            <div className="text-xl md:text-2xl font-bold text-accent-foreground tracking-wide">
+              Call us:
             </div>
-            <div className="text-xl font-bold text-accent-foreground tracking-wide">
+            
+            {/* Responsive text size & alignment */}
+            <div className="text-xl md:text-2xl font-bold text-accent-foreground tracking-wide text-center sm:text-left">
               +91 9900987878
+              <br></br>
+              +91 9844822287
             </div>
           </div>
 
+          {/* Responsive paragraph font size */}
           <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto">
             Premium Comfort, Effortless Booking. Travel in a Sedan, Traveller, or
             Toyota Luxury—Your Journey, Perfected.
           </p>
 
-          {/* Buttons */}
+          {/* Responsive button layout */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button variant="accent" size="xl" onClick={scrollToBooking}>
               Book Now
               <ArrowRight className="h-5 w-5 ml-1" />
             </Button>
 
-            {/* Call Now Button Below Book Now */}
             <Button variant="accent" size="xl" onClick={callUs}>
               <Phone className="h-5 w-5 mr-2" />
               Call Us
             </Button>
           </div>
 
-          {/* Stats */}
+          {/* Responsive stats layout (flex-wrap) */}
           <div className="flex flex-wrap justify-center gap-8 pt-8">
             {[
               { label: "Happy Customers", value: "10,000+" },
@@ -60,6 +68,7 @@ const Hero = () => {
               { label: "Vehicles", value: "50+" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
+                {/* Responsive stats font size */}
                 <div className="text-3xl md:text-4xl font-bold text-gold">
                   {stat.value}
                 </div>
