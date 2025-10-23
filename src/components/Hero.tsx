@@ -1,31 +1,7 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone } from "lucide-react";
-import vidhanaSoudhaImage from "@/assets/bangalore-vidhana-soudha.jpg";
-import palaceImage from "@/assets/bangalore-palace.jpg";
-import lalbaghImage from "@/assets/bangalore-lalbagh.jpg";
-import cubbonParkImage from "@/assets/bangalore-cubbon-park.jpg";
-import ubCityImage from "@/assets/bangalore-ub-city.jpg";
 
 const Hero = () => {
-  const images = [
-    vidhanaSoudhaImage,
-    palaceImage,
-    lalbaghImage,
-    cubbonParkImage,
-    ubCityImage,
-  ];
-
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [images.length]);
-
   const scrollToBooking = () => {
     document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -35,24 +11,11 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Background Images */}
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
-            index === currentImageIndex ? "opacity-100" : "opacity-0"
-          }`}
-          style={{ backgroundImage: `url(${image})` }}
-        >
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-      ))}
-
+    <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-[#F4EAD5]">
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground">
+      <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto space-y-6 animate-fade-in-up mt-24 md:mt-32">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-slate-900">
             Experience Premium
             <br />
             <span className="bg-gradient-accent bg-clip-text text-transparent">
@@ -70,7 +33,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto">
             Premium Comfort, Effortless Booking. Travel in a Sedan, Traveller, or
             Toyota Luxury—Your Journey, Perfected.
           </p>
@@ -100,7 +63,7 @@ const Hero = () => {
                 <div className="text-3xl md:text-4xl font-bold text-gold">
                   {stat.value}
                 </div>
-                <div className="text-sm text-white/80">{stat.label}</div>
+                <div className="text-sm text-slate-600">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -109,8 +72,8 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-          <div className="w-1.5 h-3 bg-white/50 rounded-full animate-pulse" />
+        <div className="w-6 h-10 border-2 border-slate-400 rounded-full flex items-start justify-center p-2">
+          <div className="w-1.5 h-3 bg-slate-400 rounded-full animate-pulse" />
         </div>
       </div>
     </section>

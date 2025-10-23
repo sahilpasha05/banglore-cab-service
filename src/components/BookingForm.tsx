@@ -5,9 +5,14 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Clock, MapPin, Users, Search } from "lucide-react";
 import { toast } from "sonner";
+import { SearchBox } from "@mapbox/search-js-react";
+
+// IMPORTANT: Replace with your Mapbox access token
+// Best practice: Use environment variables
+const ACCESS_TOKEN = "pk.eyJ1Ijoic2FoaWwwOThuIiwiYSI6ImNtaDNoYTUyOTJ0Y24yd3MydXNpYjFvdXEifQ.2nqdddpihwREPiO6KBljeA";
 
 const BookingForm = () => {
-  const [activeTab, setActiveTab] = useState<"outstation" | "local" | "airport">("local"); 
+  const [activeTab, setActiveTab] = useState("local");
   const [formData, setFormData] = useState({
     travelers: "1-4",
     pickupDate: "",
@@ -15,7 +20,7 @@ const BookingForm = () => {
     pickupLocation: "",
     dropLocation: "",
     days: "1",
-    hours: "2", // Added for Within City
+    hours: "2",
   });
 
   const handleSearch = () => {
@@ -121,11 +126,18 @@ const BookingForm = () => {
                       <MapPin className="h-4 w-4" />
                       Pickup Location
                     </Label>
-                    <input
-                      type="text"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    <SearchBox
+                      accessToken={ACCESS_TOKEN}
                       value={formData.pickupLocation}
-                      onChange={(e) => setFormData({ ...formData, pickupLocation: e.target.value })}
+                      onChange={(value) => setFormData(prev => ({ ...prev, pickupLocation: value }))}
+                      onRetrieve={(result) => {
+                        const placeName = result.features[0]?.place_name;
+                        if (placeName) {
+                          setFormData(prev => ({ ...prev, pickupLocation: placeName }));
+                        }
+                      }}
+                      options={{ country: "IN" }}
+                      placeholder="Enter pickup location"
                     />
                   </div>
 
@@ -134,14 +146,22 @@ const BookingForm = () => {
                       <MapPin className="h-4 w-4" />
                       Drop-off Location
                     </Label>
-                    <input
-                      type="text"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    <SearchBox
+                      accessToken={ACCESS_TOKEN}
                       value={formData.dropLocation}
-                      onChange={(e) => setFormData({ ...formData, dropLocation: e.target.value })}
+                      onChange={(value) => setFormData(prev => ({ ...prev, dropLocation: value }))}
+                      onRetrieve={(result) => {
+                        const placeName = result.features[0]?.place_name;
+                        if (placeName) {
+                          setFormData(prev => ({ ...prev, dropLocation: placeName }));
+                        }
+                      }}
+                      options={{ country: "IN" }}
+                      placeholder="Enter drop-off location"
                     />
                   </div>
 
+                  {/* Number of Days */}
                   <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
                     <Label className="flex items-center gap-2">
                       <Clock className="h-4 w-4" />
@@ -177,11 +197,18 @@ const BookingForm = () => {
                       <MapPin className="h-4 w-4" />
                       Pickup Location
                     </Label>
-                    <input
-                      type="text"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    <SearchBox
+                      accessToken={ACCESS_TOKEN}
                       value={formData.pickupLocation}
-                      onChange={(e) => setFormData({ ...formData, pickupLocation: e.target.value })}
+                      onChange={(value) => setFormData(prev => ({ ...prev, pickupLocation: value }))}
+                      onRetrieve={(result) => {
+                        const placeName = result.features[0]?.place_name;
+                        if (placeName) {
+                          setFormData(prev => ({ ...prev, pickupLocation: placeName }));
+                        }
+                      }}
+                      options={{ country: "IN" }}
+                      placeholder="Enter pickup location"
                     />
                   </div>
 
@@ -190,11 +217,18 @@ const BookingForm = () => {
                       <MapPin className="h-4 w-4" />
                       Drop-off Location
                     </Label>
-                    <input
-                      type="text"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    <SearchBox
+                      accessToken={ACCESS_TOKEN}
                       value={formData.dropLocation}
-                      onChange={(e) => setFormData({ ...formData, dropLocation: e.target.value })}
+                      onChange={(value) => setFormData(prev => ({ ...prev, dropLocation: value }))}
+                      onRetrieve={(result) => {
+                        const placeName = result.features[0]?.place_name;
+                        if (placeName) {
+                          setFormData(prev => ({ ...prev, dropLocation: placeName }));
+                        }
+                      }}
+                      options={{ country: "IN" }}
+                      placeholder="Enter drop-off location"
                     />
                   </div>
 
@@ -253,6 +287,7 @@ const BookingForm = () => {
               </div>
             </div>
 
+            {/* Book Now Button */}
             <Button
               variant="gold"
               size="lg"
@@ -273,4 +308,4 @@ const BookingForm = () => {
   );
 };
 
-export default BookingForm;    
+export default BookingForm;
