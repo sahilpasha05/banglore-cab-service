@@ -13,6 +13,7 @@ const ACCESS_TOKEN = "pk.eyJ1Ijoic2FoaWwwOThuIiwiYSI6ImNtaDNoYTUyOTJ0Y24yd3MydXN
 
 const BookingForm = () => {
   const [activeTab, setActiveTab] = useState("local");
+
   const [formData, setFormData] = useState({
     travelers: "1-4",
     pickupDate: "",
@@ -29,17 +30,26 @@ const BookingForm = () => {
       return;
     }
 
-    const tripType =
-      activeTab === "outstation"
-        ? "Outstation"
-        : activeTab === "local"
-        ? "Within City"
-        : "Airport Transfer";
+    // Updated handleSearch logic
+    let tripType;
+    if (activeTab === "outstation") {
+      tripType = "Outstation (Round Trip)";
+    } else if (activeTab === "oneway") {
+      tripType = "One Way";
+    } else if (activeTab === "local") {
+      tripType = "Within City";
+    } else {
+      tripType = "Airport Transfer";
+    }
 
     let message = `Hi! I'd like to book a ${tripType} trip:\nTraveler(s): ${formData.travelers} members\n`;
 
-    if (activeTab === "outstation") {
-      message += `Pickup Location: ${formData.pickupLocation}\nDrop-off Location: ${formData.dropLocation}\nNumber of Days: ${formData.days}\n`;
+    if (activeTab === "outstation" || activeTab === "oneway") {
+      message += `Pickup Location: ${formData.pickupLocation}\nDrop-off Location: ${formData.dropLocation}\n`;
+      // Only add days if it's outstation (round trip)
+      if (activeTab === "outstation") {
+        message += `Number of Days: ${formData.days}\n`;
+      }
     } else if (activeTab === "local") {
       message += `Pickup Location: ${formData.pickupLocation}\nDrop-off Location: ${formData.dropLocation}\nNumber of Hours: ${formData.hours}\n`;
     } else {
@@ -62,8 +72,8 @@ const BookingForm = () => {
           </div>
 
           <Card className="p-6 md:p-8 shadow-lg animate-scale-in">
-            {/* Tabs */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+            {/* Main Tabs */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
               <Button
                 variant={activeTab === "outstation" ? "accent" : "secondary"}
                 size="lg"
@@ -74,21 +84,30 @@ const BookingForm = () => {
               </Button>
 
               <Button
-                variant={activeTab === "local" ? "accent" : "secondary"}
+                variant={activeTab === "oneway" ? "accent" : "secondary"}
                 size="lg"
-                onClick={() => setActiveTab("local")}
+                onClick={() => setActiveTab("oneway")}
                 className="flex-1 col-span-1"
               >
-                Local Package
+                ONE WAY
               </Button>
 
               <Button
                 variant={activeTab === "airport" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("airport")}
-                className="flex-1 col-span-2 sm:col-span-1"
+                className="flex-1 col-span-1"
               >
                 AIRPORT TRANSFER
+              </Button>
+
+              <Button
+                variant={activeTab === "local" ? "accent" : "secondary"}
+                size="lg"
+                onClick={() => setActiveTab("local")}
+                className="flex-1 col-span-1"
+              >
+                LOCAL PACKAGE
               </Button>
             </div>
 
@@ -118,8 +137,8 @@ const BookingForm = () => {
                 </Select>
               </div>
 
-              {/* Outstation Fields */}
-              {activeTab === "outstation" && (
+              {/* Outstation & One Way Fields */}
+              {(activeTab === "outstation" || activeTab === "oneway") && (
                 <>
                   <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
                     <Label className="flex items-center gap-2">
@@ -161,36 +180,38 @@ const BookingForm = () => {
                     />
                   </div>
 
-                  {/* Number of Days */}
-                  <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
-                    <Label className="flex items-center gap-2">
-                      <Clock className="h-4 w-4" />
-                      Number of Days
-                    </Label>
-                    <Select
-                      value={formData.days}
-                      onValueChange={(value) => setFormData({ ...formData, days: value })}
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1">1 Day</SelectItem>
-                        <SelectItem value="2">2 Days</SelectItem>
-                        <SelectItem value="3">3 Days</SelectItem>
-                        <SelectItem value="4">4 Days</SelectItem>
-                        <SelectItem value="5">5 Days</SelectItem>
-                        <SelectItem value="6">6 Days</SelectItem>
-                        <SelectItem value="7">7 Days</SelectItem>
-                        <SelectItem value="custom">Custom (Need more days)</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  {/* Conditional "Number of Days" field - only for outstation (round trip) */}
+                  {activeTab === "outstation" && (
+                    <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
+                      <Label className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        Number of Days
+                      </Label>
+                      <Select
+                        value={formData.days}
+                        onValueChange={(value) => setFormData({ ...formData, days: value })}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1">1 Day</SelectItem>
+                          <SelectItem value="2">2 Days</SelectItem>
+                          <SelectItem value="3">3 Days</SelectItem>
+                          <SelectItem value="4">4 Days</SelectItem>
+                          <SelectItem value="5">5 Days</SelectItem>
+                          <SelectItem value="6">6 Days</SelectItem>
+                          <SelectItem value="7">7 Days</SelectItem>
+                          <SelectItem value="custom">Custom (Need more days)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                 </>
               )}
 
               {/* Within City / Airport Fields */}
-              {activeTab !== "outstation" && (
+              {activeTab !== "outstation" && activeTab !== "oneway" && (
                 <>
                   <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
                     <Label className="flex items-center gap-2">
