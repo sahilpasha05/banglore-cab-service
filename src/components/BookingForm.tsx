@@ -78,7 +78,8 @@ const BookingForm = () => {
                 variant={activeTab === "outstation" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("outstation")}
-                className="flex-1 col-span-1"
+                // FIXED: Added responsive text classes
+                className="flex-1 col-span-1 text-xs sm:text-sm md:text-base"
               >
                 OUT STATION
               </Button>
@@ -87,7 +88,8 @@ const BookingForm = () => {
                 variant={activeTab === "oneway" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("oneway")}
-                className="flex-1 col-span-1"
+                // FIXED: Added responsive text classes
+                className="flex-1 col-span-1 text-xs sm:text-sm md:text-base"
               >
                 ONE WAY
               </Button>
@@ -96,7 +98,8 @@ const BookingForm = () => {
                 variant={activeTab === "airport" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("airport")}
-                className="flex-1 col-span-1"
+                // FIXED: Added responsive text classes
+                className="flex-1 col-span-1 text-xs sm:text-sm md:text-base"
               >
                 AIRPORT TRANSFER
               </Button>
@@ -105,7 +108,8 @@ const BookingForm = () => {
                 variant={activeTab === "local" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("local")}
-                className="flex-1 col-span-1"
+                // FIXED: Added responsive text classes
+                className="flex-1 col-span-1 text-xs sm:text-sm md:text-base"
               >
                 LOCAL PACKAGE
               </Button>
@@ -295,7 +299,6 @@ const BookingForm = () => {
 
               {/* Pickup Time */}
               <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
-                {/* THIS IS THE FIXED LINE */}
                 <Label className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
                   Pickup Time
