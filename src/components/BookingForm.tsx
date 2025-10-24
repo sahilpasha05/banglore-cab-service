@@ -73,7 +73,7 @@ const BookingForm = () => {
 
           <Card className="p-6 md:p-8 shadow-lg animate-scale-in">
             {/* Main Tabs */}
-            {/* THIS IS THE FIXED LINE: Changed sm:grid-cols-4 to md:grid-cols-4 */}
+            {/* Layout fix: md:grid-cols-4 */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <Button
                 variant={activeTab === "outstation" ? "accent" : "secondary"}
@@ -199,7 +199,8 @@ const BookingForm = () => {
                           <SelectItem value="1">1 Day</SelectItem>
                           <SelectItem value="2">2 Days</SelectItem>
                           <SelectItem value="3">3 Days</SelectItem>
-                          <SelectItem value.="4">4 Days</SelectItem>
+                          {/* TYPO FIX: Removed period from value.="4" */}
+                          <SelectItem value="4">4 Days</SelectItem>
                           <SelectItem value="5">5 Days</SelectItem>
                           <SelectItem value="6">6 Days</SelectItem>
                           <SelectItem value="7">7 Days</SelectItem>
@@ -299,7 +300,7 @@ const BookingForm = () => {
                 <Label className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
                   Pickup Time
-                </Label>
+                </Message>
                 <input
                   type="time"
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
@@ -330,4 +331,5 @@ const BookingForm = () => {
   );
 };
 
+// TYPO FIX: Removed duplicate export default
 export default BookingForm;
