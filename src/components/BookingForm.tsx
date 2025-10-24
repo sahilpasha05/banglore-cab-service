@@ -73,7 +73,8 @@ const BookingForm = () => {
 
           <Card className="p-6 md:p-8 shadow-lg animate-scale-in">
             {/* Main Tabs */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+            {/* THIS IS THE FIXED LINE: Changed sm:grid-cols-4 to md:grid-cols-4 */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <Button
                 variant={activeTab === "outstation" ? "accent" : "secondary"}
                 size="lg"
@@ -198,7 +199,7 @@ const BookingForm = () => {
                           <SelectItem value="1">1 Day</SelectItem>
                           <SelectItem value="2">2 Days</SelectItem>
                           <SelectItem value="3">3 Days</SelectItem>
-                          <SelectItem value="4">4 Days</SelectItem>
+                          <SelectItem value.="4">4 Days</SelectItem>
                           <SelectItem value="5">5 Days</SelectItem>
                           <SelectItem value="6">6 Days</SelectItem>
                           <SelectItem value="7">7 Days</SelectItem>
