@@ -90,7 +90,8 @@ const BookingForm = () => {
                 onClick={() => setActiveTab("airport")}
                 className="flex-1 text-xs sm:text-sm md:text-base"
               >
-                AIRPORT TRANSFER
+                AIRPOR
+                TRANSFER
               </Button>
 
               <Button
