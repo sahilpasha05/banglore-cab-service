@@ -306,7 +306,19 @@ const BookingForm = () => {
                       {airportSubTab === "pickup" ? (
                         <>
                           {/* Airport Pickup: Airport is pickup, user enters drop location */}
-                          <div className="space-y-2 col-span-1 sm:col-span-2 lg:col-span-4">
+                          <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
+                            <Label className="flex items-center gap-2">
+                              <MapPin className="h-4 w-4" />
+                              Pickup Location
+                            </Label>
+                            <input
+                              type="text"
+                              className="flex h-10 w-full rounded-md border border-input bg-muted px-3 py-2 text-sm"
+                              value="Kempegowda International Airport Bengaluru"
+                              disabled
+                            />
+                          </div>
+                          <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
                             <Label className="flex items-center gap-2">
                               <MapPin className="h-4 w-4" />
                               Drop-off Location
@@ -329,7 +341,7 @@ const BookingForm = () => {
                       ) : airportSubTab === "drop" ? (
                         <>
                           {/* Airport Drop: User enters pickup, airport is drop */}
-                          <div className="space-y-2 col-span-1 sm:col-span-2 lg:col-span-4">
+                          <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
                             <Label className="flex items-center gap-2">
                               <MapPin className="h-4 w-4" />
                               Pickup Location
@@ -348,11 +360,23 @@ const BookingForm = () => {
                               placeholder="Enter pickup location"
                             />
                           </div>
+                          <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
+                            <Label className="flex items-center gap-2">
+                              <MapPin className="h-4 w-4" />
+                              Drop-off Location
+                            </Label>
+                            <input
+                              type="text"
+                              className="flex h-10 w-full rounded-md border border-input bg-muted px-3 py-2 text-sm"
+                              value="Kempegowda International Airport Bengaluru"
+                              disabled
+                            />
+                          </div>
                         </>
                       ) : (
                         <>
                           {/* Airport Round Trip: User enters pickup, airport is drop */}
-                          <div className="space-y-2 col-span-1 sm:col-span-2 lg:col-span-4">
+                          <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
                             <Label className="flex items-center gap-2">
                               <MapPin className="h-4 w-4" />
                               Pickup Location
@@ -369,6 +393,18 @@ const BookingForm = () => {
                               }}
                               options={{ country: "IN" }}
                               placeholder="Enter pickup location"
+                            />
+                          </div>
+                          <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
+                            <Label className="flex items-center gap-2">
+                              <MapPin className="h-4 w-4" />
+                              Drop-off Location
+                            </Label>
+                            <input
+                              type="text"
+                              className="flex h-10 w-full rounded-md border border-input bg-muted px-3 py-2 text-sm"
+                              value="Kempegowda International Airport Bengaluru"
+                              disabled
                             />
                           </div>
                         </>
