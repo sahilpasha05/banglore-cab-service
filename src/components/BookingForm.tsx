@@ -79,7 +79,7 @@ const BookingForm = () => {
                 variant={activeTab === "outstation" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("outstation")}
-                className="flex-1 text-xs sm:text-sm md:text-base"
+                className="flex-1 text-xs sm:text-sm md:text-base whitespace-nowrap"
               >
                 OUT STATION
               </Button>
@@ -88,17 +88,17 @@ const BookingForm = () => {
                 variant={activeTab === "airport" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("airport")}
-                className="flex-1 text-xs sm:text-sm md:text-base"
+                className="flex-1 text-[10px] xs:text-xs sm:text-sm md:text-base whitespace-normal sm:whitespace-nowrap leading-tight px-2 sm:px-4"
               >
-                AIRPOR
-                TRANSFER
+                <span className="hidden sm:inline">AIRPORT TRANSFER</span>
+                <span className="inline sm:hidden">AIRPORT</span>
               </Button>
 
               <Button
                 variant={activeTab === "local" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("local")}
-                className="flex-1 text-xs sm:text-sm md:text-base"
+                className="flex-1 text-xs sm:text-sm md:text-base whitespace-nowrap"
               >
                 LOCAL PACKAGE
               </Button>
