@@ -91,7 +91,7 @@ const BookingForm = () => {
                 className="flex-1 text-[10px] xs:text-xs sm:text-sm md:text-base whitespace-normal sm:whitespace-nowrap leading-tight px-2 sm:px-4"
               >
                 <span className="hidden sm:inline">AIRPORT TRANSFER</span>
-                <span className="inline sm:hidden">AIRPORT</span>
+                <span className="inline sm:hidden">AIRPORT TRANSFER</span>
               </Button>
 
               <Button
