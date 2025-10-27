@@ -61,11 +61,11 @@ const Navigation = () => {
             className="flex items-center focus:outline-none"
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-              <div className="text-xl sm:text-2xl font-bold bg-gradient-accent bg-clip-text text-transparent whitespace-nowrap">
+              <div className="text-xl sm:text-2xl font-bold whitespace-nowrap" style={{ color: '#2D9EE0' }}>
                 BANGALORE CABS
               </div>
-              <div className="text-xs sm:text-sm font-medium text-muted-foreground">
-                SERVICE
+              <div className="text-xs sm:text-sm font-medium" style={{ color: '#2D9EE0' }}>
+                ───24/7 available───
               </div>
             </div>
           </button>
