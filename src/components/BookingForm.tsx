@@ -13,6 +13,7 @@ const ACCESS_TOKEN = "pk.eyJ1Ijoic2FoaWwwOThuIiwiYSI6ImNtaDNoYTUyOTJ0Y24yd3MydXN
 
 const BookingForm = () => {
   const [activeTab, setActiveTab] = useState("outstation");
+  const [outstationSubTab, setOutstationSubTab] = useState("twoway");
   const [airportSubTab, setAirportSubTab] = useState("pickup");
 
   const [formData, setFormData] = useState({
@@ -107,6 +108,19 @@ const BookingForm = () => {
                 LOCAL PACKAGE
               </Button>
             </div>
+
+            {/* Outstation Sub-Tab - Only Two Way */}
+            {activeTab === "outstation" && (
+              <div className="mb-6">
+                <Button
+                  variant="default"
+                  size="lg"
+                  className="w-full text-sm sm:text-base md:text-lg py-5 sm:py-6"
+                >
+                  ROUND TRIP (TWO WAY)
+                </Button>
+              </div>
+            )}
 
             {/* Airport Sub-Tabs */}
             {activeTab === "airport" && (
