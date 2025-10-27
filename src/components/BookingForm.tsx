@@ -13,7 +13,6 @@ const ACCESS_TOKEN = "pk.eyJ1Ijoic2FoaWwwOThuIiwiYSI6ImNtaDNoYTUyOTJ0Y24yd3MydXN
 
 const BookingForm = () => {
   const [activeTab, setActiveTab] = useState("outstation");
-  const [outstationSubTab, setOutstationSubTab] = useState("twoway");
   const [airportSubTab, setAirportSubTab] = useState("pickup");
 
   const [formData, setFormData] = useState({
@@ -36,6 +35,8 @@ const BookingForm = () => {
     let tripType;
     if (activeTab === "outstation") {
       tripType = "Outstation (Round Trip)";
+    } else if (activeTab === "oneway") {
+      tripType = "Outstation (One Way)";
     } else if (activeTab === "local") {
       tripType = "Within City";
     } else {
@@ -49,8 +50,11 @@ const BookingForm = () => {
     let message = `Hi! I'd like to book a ${tripType} trip:\nTraveler(s): ${formData.travelers} members\n`;
 
     if (activeTab === "outstation") {
-      // Outstation: pickup, drop, and days
+      // Round Trip: pickup, drop, and days
       message += `Pickup Location: ${formData.pickupLocation}\nDrop-off Location: ${formData.dropLocation}\nNumber of Days: ${formData.days}\n`;
+    } else if (activeTab === "oneway") {
+      // One Way: pickup and drop only
+      message += `Pickup Location: ${formData.pickupLocation}\nDrop-off Location: ${formData.dropLocation}\n`;
     } else if (activeTab === "local") {
       message += `Pickup Location: ${formData.pickupLocation}\nDrop-off Location: ${formData.dropLocation}\nNumber of Hours: ${formData.hours}\n`;
     } else {
@@ -77,59 +81,54 @@ const BookingForm = () => {
             <p className="text-lg text-muted-foreground">Choose your travel type and get started</p>
           </div>
 
-          <Card className="p-6 md:p-8 shadow-lg animate-scale-in">
-            {/* Main Tabs */}
-            <div className="grid grid-cols-3 gap-4 mb-6">
+          <Card className="p-4 sm:p-6 md:p-8 shadow-lg animate-scale-in">
+            {/* Main Tabs - 4 tabs in 2x2 grid on mobile */}
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-6">
               <Button
                 variant={activeTab === "outstation" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("outstation")}
-                className="flex-1 text-xs sm:text-sm md:text-base whitespace-nowrap"
+                className="text-xs sm:text-sm md:text-base lg:text-lg font-bold whitespace-normal leading-tight px-2 sm:px-4 py-5 sm:py-6 h-auto min-h-[50px]"
               >
-                OUT STATION
+                OUTSTATION
+              </Button>
+
+              <Button
+                variant={activeTab === "oneway" ? "accent" : "secondary"}
+                size="lg"
+                onClick={() => setActiveTab("oneway")}
+                className="text-xs sm:text-sm md:text-base lg:text-lg font-bold whitespace-normal leading-tight px-2 sm:px-4 py-5 sm:py-6 h-auto min-h-[50px]"
+              >
+                ONE WAY
               </Button>
 
               <Button
                 variant={activeTab === "airport" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("airport")}
-                className="flex-1 text-[10px] xs:text-xs sm:text-sm md:text-base whitespace-normal sm:whitespace-nowrap leading-tight px-2 sm:px-4"
+                className="text-xs sm:text-sm md:text-base lg:text-lg font-bold whitespace-normal leading-tight px-2 sm:px-4 py-5 sm:py-6 h-auto min-h-[50px]"
               >
-                <span className="hidden sm:inline">AIRPORT TRANSFER</span>
-                <span className="inline sm:hidden">AIRPORT TRANSFER</span>
+                AIRPORT TRANSFER
               </Button>
 
               <Button
                 variant={activeTab === "local" ? "accent" : "secondary"}
                 size="lg"
                 onClick={() => setActiveTab("local")}
-                className="flex-1 text-xs sm:text-sm md:text-base whitespace-nowrap"
+                className="text-xs sm:text-sm md:text-base lg:text-lg font-bold whitespace-normal leading-tight px-2 sm:px-4 py-5 sm:py-6 h-auto min-h-[50px]"
               >
                 LOCAL PACKAGE
               </Button>
             </div>
 
-            {/* Outstation Sub-Tab - Only Two Way */}
-            {activeTab === "outstation" && (
-              <div className="mb-6">
-                <Button
-                  variant="default"
-                  size="lg"
-                  className="w-full text-sm sm:text-base md:text-lg py-5 sm:py-6"
-                >
-                  ROUND TRIP (TWO WAY)
-                </Button>
-              </div>
-            )}
-
             {/* Airport Sub-Tabs */}
             {activeTab === "airport" && (
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-6">
                 <Button
                   variant={airportSubTab === "pickup" ? "default" : "outline"}
                   size="lg"
                   onClick={() => setAirportSubTab("pickup")}
-                  className="text-xs sm:text-sm md:text-base py-5 sm:py-6 whitespace-normal leading-tight"
+                  className="text-sm sm:text-base md:text-lg font-semibold py-5 sm:py-6 whitespace-normal leading-tight h-auto min-h-[50px]"
                 >
                   AIRPORT PICKUP
                 </Button>
@@ -138,7 +137,7 @@ const BookingForm = () => {
                   variant={airportSubTab === "drop" ? "default" : "outline"}
                   size="lg"
                   onClick={() => setAirportSubTab("drop")}
-                  className="text-xs sm:text-sm md:text-base py-5 sm:py-6 whitespace-normal leading-tight"
+                  className="text-sm sm:text-base md:text-lg font-semibold py-5 sm:py-6 whitespace-normal leading-tight h-auto min-h-[50px]"
                 >
                   AIRPORT DROP
                 </Button>
@@ -149,8 +148,8 @@ const BookingForm = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
               {/* Travelers */}
               <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
-                <Label className="flex items-center gap-2">
-                  <Users className="h-4 w-4" />
+                <Label className="flex items-center gap-2 text-sm sm:text-base">
+                  <Users className="h-4 w-4 sm:h-5 sm:w-5" />
                   Traveler(s)
                 </Label>
                 <Select
@@ -171,13 +170,13 @@ const BookingForm = () => {
                 </Select>
               </div>
 
-              {/* Outstation Fields */}
+              {/* Outstation (Round Trip) Fields */}
               {activeTab === "outstation" && (
                 <>
-                  {/* Round Trip - Pickup (default Bangalore), Drop, and Days */}
+                  {/* Pickup Location */}
                   <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
-                    <Label className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4" />
+                    <Label className="flex items-center gap-2 text-sm sm:text-base">
+                      <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
                       Pickup Location
                     </Label>
                     <SearchBox
@@ -195,6 +194,7 @@ const BookingForm = () => {
                     />
                   </div>
 
+                  {/* Drop-off Location */}
                   <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
                     <Label className="flex items-center gap-2">
                       <MapPin className="h-4 w-4" />
@@ -215,6 +215,7 @@ const BookingForm = () => {
                     />
                   </div>
 
+                  {/* Number of Days */}
                   <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
                     <Label className="flex items-center gap-2">
                       <Clock className="h-4 w-4" />
@@ -242,8 +243,55 @@ const BookingForm = () => {
                 </>
               )}
 
-              {/* Within City / Airport Fields */}
-              {activeTab !== "outstation" && (
+              {/* One Way Fields */}
+              {activeTab === "oneway" && (
+                <>
+                  {/* Pickup Location */}
+                  <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
+                    <Label className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      Pickup Location
+                    </Label>
+                    <SearchBox
+                      accessToken={ACCESS_TOKEN}
+                      value={formData.pickupLocation}
+                      onChange={(value) => setFormData(prev => ({ ...prev, pickupLocation: value }))}
+                      onRetrieve={(result) => {
+                        const placeName = result.features[0]?.place_name;
+                        if (placeName) {
+                          setFormData(prev => ({ ...prev, pickupLocation: placeName }));
+                        }
+                      }}
+                      options={{ country: "IN" }}
+                      placeholder="Enter pickup location"
+                    />
+                  </div>
+
+                  {/* Drop-off Location */}
+                  <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
+                    <Label className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      Drop-off Location
+                    </Label>
+                    <SearchBox
+                      accessToken={ACCESS_TOKEN}
+                      value={formData.dropLocation}
+                      onChange={(value) => setFormData(prev => ({ ...prev, dropLocation: value }))}
+                      onRetrieve={(result) => {
+                        const placeName = result.features[0]?.place_name;
+                        if (placeName) {
+                          setFormData(prev => ({ ...prev, dropLocation: placeName }));
+                        }
+                      }}
+                      options={{ country: "IN" }}
+                      placeholder="Enter drop-off location"
+                    />
+                  </div>
+                </>
+              )}
+
+              {/* Airport / Local Fields */}
+              {(activeTab === "airport" || activeTab === "local") && (
                 <>
                   {/* Airport Transfer Fields */}
                   {activeTab === "airport" ? (
@@ -285,7 +333,7 @@ const BookingForm = () => {
                         </>
                       ) : (
                         <>
-                          {/* Airport Drop: User enters pickup (default Bangalore), airport is drop */}
+                          {/* Airport Drop: User enters pickup, airport is drop */}
                           <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-2">
                             <Label className="flex items-center gap-2">
                               <MapPin className="h-4 w-4" />
@@ -363,7 +411,7 @@ const BookingForm = () => {
                         />
                       </div>
 
-                      {/* Number of Hours for Within City */}
+                      {/* Number of Hours for Local Package */}
                       <div className="space-y-2 col-span-1 sm:col-span-1 lg:col-span-1">
                         <Label className="flex items-center gap-2">
                           <Clock className="h-4 w-4" />
